@@ -3,7 +3,7 @@ import { Flashcard } from "@/entities/Flashcard";
 import { InvokeLLM } from "@/integrations/Core";
 import { User } from "@/entities/User";
 import { motion, AnimatePresence } from "framer-motion";
-import { Brain, Plus, RotateCcw, Wand2 } from "lucide-react";
+import { Brain, Plus, RotateCcw, CheckCircle, XCircle, Wand2 } from "lucide-react";
 
 export default function Flashcards() {
   const [flashcards, setFlashcards] = useState([]);
@@ -340,7 +340,7 @@ export default function Flashcards() {
         </div>
       )}
 
-      <style jsx>{`
+      <style>{`
         .preserve-3d {
           transform-style: preserve-3d;
         }
