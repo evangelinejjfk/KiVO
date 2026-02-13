@@ -53,6 +53,11 @@ AI:`;
       setMessages(prev => [...prev, aiMessage]);
 
       await AIChat.create({ topic: input, notes: response });
+      
+      // Award XP for using AI helper
+      if (window.awardPetXP) {
+        await window.awardPetXP(10);
+      }
     } catch (error) {
       console.error("Error communicating with AI:", error);
       const errorMessage = { role: 'ai', content: "Oops! I'm having a little trouble connecting. Please try again in a moment." };
