@@ -179,3 +179,54 @@ body {
   background: #FFE5E5;
   image-rendering: pixelated;
 }
+
+/* Accessibility Enhancements */
+*:focus-visible {
+  outline: 4px solid #9B4D96;
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 4px solid #9B4D96;
+  outline-offset: 2px;
+}
+
+/* Skip to main content link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #9B4D96;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Ensure sufficient color contrast */
+.text-gray-600 {
+  color: #4b5563;
+}
+
+.text-gray-700 {
+  color: #374151;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

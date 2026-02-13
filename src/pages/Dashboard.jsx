@@ -6,14 +6,19 @@ import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import TamagotchiWidget from "../components/TamagotchiWidget";
 import MoodTracker from "../components/mood/MoodTracker";
+import OnboardingTour from "../components/OnboardingTour";
+import WellnessCoach from "../components/WellnessCoach";
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showMoodTracker, setShowMoodTracker] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [showWellnessCoach, setShowWellnessCoach] = useState(false);
 
   useEffect(() => {
     loadUserData();
+    checkWellnessCoaching();
   }, []);
 
   const loadUserData = async () => {
@@ -21,10 +26,49 @@ export default function Dashboard() {
     try {
       const currentUser = await base44.auth.me();
       setUser(currentUser);
+      
+      // Check if onboarding is needed
+      if (!currentUser.onboarding_completed) {
+        setShowOnboarding(true);
+      }
     } catch (error) {
       console.error("Failed to load user data:", error);
     }
     setIsLoading(false);
+  };
+
+  const checkWellnessCoaching = async () => {
+    try {
+      const currentUser = await base44.auth.me();
+      const today = new Date().toISOString().split('T')[0];
+      
+      // Only check once per day
+      if (currentUser.last_wellness_check === today) return;
+      
+      // Get recent moods
+      const recentMoods = await base44.entities.Mood.filter({ created_by: currentUser.email });
+      const last7Days = recentMoods.slice(0, 7);
+      
+      const negativeMoods = last7Days.filter(mood => 
+        ['stressed', 'anxious', 'overwhelmed', 'tired'].includes(mood.mood_type)
+      );
+      
+      // Show wellness coach if 3+ negative moods in last 7 days
+      if (negativeMoods.length >= 3) {
+        setTimeout(() => setShowWellnessCoach(true), 2000);
+      }
+    } catch (error) {
+      console.error("Wellness check failed:", error);
+    }
+  };
+
+  const handleCompleteOnboarding = async () => {
+    try {
+      await base44.auth.updateMe({ onboarding_completed: true });
+      setShowOnboarding(false);
+    } catch (error) {
+      console.error("Failed to complete onboarding:", error);
+    }
   };
 
   if (isLoading) {
@@ -146,6 +190,16 @@ export default function Dashboard() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <MoodTracker onClose={() => setShowMoodTracker(false)} />
         </div>
+      )}
+
+      {/* Onboarding Tour */}
+      {showOnboarding && (
+        <OnboardingTour onComplete={handleCompleteOnboarding} />
+      )}
+
+      {/* Wellness Coach */}
+      {showWellnessCoach && (
+        <WellnessCoach onClose={() => setShowWellnessCoach(false)} />
       )}
     </div>
   );

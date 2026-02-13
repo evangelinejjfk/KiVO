@@ -7,28 +7,60 @@ import NavItem from './components/NavItem';
 import FloatingAddButton from "./components/FloatingAddButton";
 
 const navItems = [
-  { name: "Dashboard", href: createPageUrl("Dashboard"), icon: LayoutDashboard },
-  { name: "Calendar", href: createPageUrl("CalendarView"), icon: Calendar },
-  { name: "MoneyFlow", href: createPageUrl("MoneyFlow"), icon: DollarSign },
-  { name: "Wellness", href: createPageUrl("Wellness"), icon: Heart },
+  { 
+    name: "Dashboard", 
+    href: createPageUrl("Dashboard"), 
+    icon: LayoutDashboard,
+    color: "bg-[#FFE5F4]" 
+  },
+  { 
+    name: "Calendar", 
+    href: createPageUrl("CalendarView"), 
+    icon: Calendar,
+    color: "bg-[#FFF4C9]" 
+  },
   { 
     name: "Study Tools", 
     icon: Book,
+    color: "bg-[#B8E8D4]",
     subItems: [
       { name: "Flashcards", href: createPageUrl("Flashcards"), icon: Brain },
       { name: "Quick Reference", href: createPageUrl("QuickReference"), icon: FileText },
+      { name: "Study Planner", href: createPageUrl("StudyPlanner"), icon: Calendar },
+      { name: "Document Analyzer", href: createPageUrl("DocumentAnalyzer"), icon: Upload },
     ]
   },
   { 
     name: "AI Helper", 
     icon: Bot,
+    color: "bg-[#E0BBE4]",
     subItems: [
       { name: "AI Study Buddy", href: createPageUrl("AIChat"), icon: Bot },
       { name: "Chat History", href: createPageUrl("ChatHistory"), icon: History },
     ]
   },
-  { name: "Search", href: createPageUrl("Search"), icon: SearchIcon },
-  { name: "Scrapbook", href: createPageUrl("Scrapbook"), icon: Camera },
+  { 
+    name: "Life & Wellness", 
+    icon: Heart,
+    color: "bg-[#FFB6D9]",
+    subItems: [
+      { name: "Wellness Hub", href: createPageUrl("Wellness"), icon: Heart },
+      { name: "MoneyFlow", href: createPageUrl("MoneyFlow"), icon: DollarSign },
+      { name: "Scrapbook", href: createPageUrl("Scrapbook"), icon: Camera },
+    ]
+  },
+  { 
+    name: "Search", 
+    href: createPageUrl("Search"), 
+    icon: SearchIcon,
+    color: "bg-[#FFF4C9]" 
+  },
+  { 
+    name: "Achievements", 
+    href: createPageUrl("Achievements"), 
+    icon: TrendingUp,
+    color: "bg-[#FFD93D]" 
+  },
 ];
 
 export default function Layout({ children, currentPageName }) {
