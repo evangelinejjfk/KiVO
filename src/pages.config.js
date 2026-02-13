@@ -51,15 +51,13 @@ import AIChat from './pages/AIChat';
 import Analytics from './pages/Analytics';
 import CalendarView from './pages/CalendarView';
 import ChatHistory from './pages/ChatHistory';
-import ClassChat from './pages/ClassChat';
 import Dashboard from './pages/Dashboard';
 import Flashcards from './pages/Flashcards';
 import ProfileSetup from './pages/ProfileSetup';
 import QuickReference from './pages/QuickReference';
 import ResourceHub from './pages/ResourceHub';
-import Search from './pages/Search';
-import SharedCalendar from './pages/SharedCalendar';
 import Scrapbook from './pages/Scrapbook';
+import Search from './pages/Search';
 import YearbookGenerator from './pages/YearbookGenerator';
 import __Layout from './Layout.jsx';
 
@@ -69,15 +67,13 @@ export const PAGES = {
     "Analytics": Analytics,
     "CalendarView": CalendarView,
     "ChatHistory": ChatHistory,
-    "ClassChat": ClassChat,
     "Dashboard": Dashboard,
     "Flashcards": Flashcards,
     "ProfileSetup": ProfileSetup,
     "QuickReference": QuickReference,
     "ResourceHub": ResourceHub,
-    "Search": Search,
-    "SharedCalendar": SharedCalendar,
     "Scrapbook": Scrapbook,
+    "Search": Search,
     "YearbookGenerator": YearbookGenerator,
 }
 

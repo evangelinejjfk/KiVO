@@ -9,7 +9,6 @@ const actions = [
   { name: "Add Flashcard", icon: Brain, href: createPageUrl("Flashcards"), action: "flashcard" },
   { name: "Add Quick Ref", icon: FileText, href: createPageUrl("QuickReference"), action: "quickref" },
   { name: "Upload Note", icon: Upload, href: createPageUrl("ResourceHub"), action: "upload" },
-  { name: "Add Event", icon: Calendar, href: createPageUrl("SharedCalendar"), action: "event" },
   { name: "Ask AI", icon: Bot, href: createPageUrl("AIChat"), action: "ai" },
 ];
 

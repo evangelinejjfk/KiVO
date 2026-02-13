@@ -1,22 +1,15 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { Calendar, MessageCircle, LogOut, Upload, Brain, Bot, History, Users, TrendingUp, Search as SearchIcon, FileText, ChevronsLeft, ChevronsRight, LayoutDashboard, Book, Camera } from "lucide-react";
+import { Calendar, LogOut, Upload, Brain, Bot, History, TrendingUp, Search as SearchIcon, FileText, ChevronsLeft, ChevronsRight, LayoutDashboard, Book, Camera } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import NavItem from './components/NavItem';
 import FloatingAddButton from "./components/FloatingAddButton";
 
 const navItems = [
   { name: "Dashboard", href: createPageUrl("Dashboard"), icon: LayoutDashboard },
+  { name: "Calendar", href: createPageUrl("CalendarView"), icon: Calendar },
   { 
-    name: "Calendar", 
-    icon: Calendar,
-    subItems: [
-      { name: "Shared Calendar", href: createPageUrl("SharedCalendar"), icon: Users },
-      { name: "Personal Calendar", href: createPageUrl("CalendarView"), icon: Calendar }
-    ]
-  },
-   { 
     name: "Study Tools", 
     icon: Book,
     subItems: [
@@ -26,10 +19,9 @@ const navItems = [
     ]
   },
   { 
-    name: "Communication", 
-    icon: MessageCircle,
+    name: "AI Helper", 
+    icon: Bot,
     subItems: [
-      { name: "Class Chat", href: createPageUrl("ClassChat"), icon: MessageCircle },
       { name: "AI Study Buddy", href: createPageUrl("AIChat"), icon: Bot },
       { name: "Chat History", href: createPageUrl("ChatHistory"), icon: History },
     ]
@@ -117,7 +109,7 @@ export default function Layout({ children, currentPageName }) {
                 )}
                 <div className="flex-1 min-w-0">
                   <p className="font-bold text-sm text-black truncate">{user.username || user.full_name}</p>
-                  <p className="text-xs text-gray-800">Class {user.class_name}</p>
+                  <p className="text-xs text-gray-800">Level {user.level || 1} 🎮</p>
                 </div>
               </div>
             )}
