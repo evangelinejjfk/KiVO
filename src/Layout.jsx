@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Calendar, MessageCircle, LogOut, Upload, Brain, Moon, Sun, Bot, History, Users, TrendingUp, Search as SearchIcon, FileText, Palette, ChevronsLeft, ChevronsRight, LayoutDashboard, Feather, Book, Camera } from "lucide-react";
 import { User } from '@/entities/User';
-import MotivationCard from './components/MotivationCard';
 import NavItem from './components/NavItem';
 import FloatingAddButton from "./components/FloatingAddButton";
 
@@ -221,7 +220,6 @@ export default function Layout({ children, currentPageName }) {
         </main>
         
         <FloatingAddButton />
-        <MotivationCard />
       </div>
     </>
   );
