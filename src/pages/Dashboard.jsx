@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Event } from "@/entities/Event";
-import { SharedEvent } from "@/entities/SharedEvent";
-import { Resource } from "@/entities/Resource";
-import { User } from "@/entities/User";
-import { UserActivity } from "@/entities/UserActivity";
-import { Search as SearchIcon, Calendar, TrendingUp, BookOpen, Bell, Upload, FileText, Image, Link as LinkIcon } from "lucide-react";
+import { base44 } from "@/api/base44Client";
+import { Search as SearchIcon, Calendar, TrendingUp, BookOpen, Bell, Upload, FileText, Image, Link as LinkIcon, Sparkles, Heart, Apple } from "lucide-react";
 import { format, isToday, isTomorrow, addDays } from "date-fns";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
+import TamagotchiWidget from "../components/TamagotchiWidget";
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
@@ -26,7 +23,7 @@ export default function Dashboard() {
   const loadDashboardData = async () => {
     setIsLoading(true);
     try {
-      const currentUser = await User.me();
+      const currentUser = await base44.auth.me();
       setUser(currentUser);
 
       if (!currentUser.class_name) {
@@ -35,8 +32,8 @@ export default function Dashboard() {
       }
 
       // Load upcoming events (next 7 days)
-      const personalEvents = await Event.filter({ created_by: currentUser.email }, "-date");
-      const sharedEvents = await SharedEvent.filter({ class_name: currentUser.class_name }, "-date");
+      const personalEvents = await base44.entities.Event.filter({ created_by: currentUser.email }, "-date");
+      const sharedEvents = await base44.entities.SharedEvent.filter({ class_name: currentUser.class_name }, "-date");
       const allEvents = [...personalEvents, ...sharedEvents];
       const upcomingEvents = allEvents
         .filter(event => {
@@ -49,10 +46,10 @@ export default function Dashboard() {
         .slice(0, 5);
 
       // Load recent uploads (notes, resources)
-      const recentResources = await Resource.filter({ class_name: currentUser.class_name }, "-created_date", 5);
+      const recentResources = await base44.entities.Resource.filter({ class_name: currentUser.class_name }, "-created_date", 5);
 
       // Load recent activity to calculate streak
-      const activities = await UserActivity.filter({ created_by: currentUser.email }, "-created_date");
+      const activities = await base44.entities.UserActivity.filter({ created_by: currentUser.email }, "-created_date");
       const uniqueDates = [...new Set(activities.map(a => a.activity_date))].sort().reverse();
       let streak = 0;
       let currentDate = new Date();
@@ -97,120 +94,150 @@ export default function Dashboard() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-black"></div>
+      <div className="flex items-center justify-center min-h-screen bg-[#FFE5E5]">
+        <div className="pixel-spinner"></div>
       </div>
     );
   }
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto">
-      {/* Header with Profile Section */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-4xl font-bold text-slate-800 mb-1">
-            Welcome back{user?.username ? `, ${user.username}` : user?.full_name ? `, ${user.full_name.split(' ')[0]}` : ''}! 👋
+    <div className="space-y-6 max-w-7xl mx-auto">
+      {/* Pixel Header */}
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="pixel-card bg-gradient-to-r from-[#FF6B9D] via-[#C147E9] to-[#8B5CF6] text-white p-8 relative overflow-hidden"
+      >
+        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+          <div className="pixel-grid"></div>
+        </div>
+        <div className="relative z-10">
+          <h1 className="pixel-text text-4xl mb-2">
+            Hey {user?.username || user?.full_name?.split(' ')[0] || 'Player'}! ✨
           </h1>
-          <p className="text-slate-600">Here's what's happening with your studies today</p>
+          <p className="text-xl opacity-90">Level up your learning adventure! 🎮</p>
         </div>
         {user?.profile_picture && (
-          <img src={user.profile_picture} alt="Profile" className="w-16 h-16 rounded-full object-cover border-4 border-blue-600 shadow-lg hidden md:block" />
+          <img 
+            src={user.profile_picture} 
+            alt="Profile" 
+            className="absolute right-8 top-1/2 -translate-y-1/2 w-20 h-20 pixel-border-white hidden md:block" 
+          />
         )}
-      </div>
+      </motion.div>
 
-      {/* Global Search */}
-      <Link to={createPageUrl("Search")} className="block">
-        <div className="relative">
-          <div className="w-full p-4 bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md transition-shadow text-lg text-left text-slate-400 pr-12 cursor-pointer">
-            Search flashcards, notes, chats...
-          </div>
-          <SearchIcon className="absolute right-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-slate-400" />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Left Column - Pet + Stats */}
+        <div className="space-y-6">
+          <TamagotchiWidget />
+          
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="pixel-card bg-[#FFD93D] p-6"
+          >
+            <div className="flex items-center gap-4">
+              <div className="pixel-icon bg-[#FF6B9D] text-white">
+                <TrendingUp className="w-8 h-8" />
+              </div>
+              <div>
+                <p className="pixel-text text-5xl text-[#FF6B9D]">{dashboardData.streak}</p>
+                <p className="text-sm font-bold mt-1">Day Streak 🔥</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </Link>
 
-      {/* Quick Stats Widgets */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Middle Column - Upcoming Events */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          animate={{ opacity: 1, y: 0 }}
-          className="p-6 bg-gradient-to-br from-amber-400 to-amber-500 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
-        >
-          <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center">
-              <TrendingUp className="w-8 h-8 text-white" />
-            </div>
-            <div>
-              <h3 className="text-4xl font-bold text-white">{dashboardData.streak}</h3>
-              <p className="text-sm font-medium text-white/90">Day Streak 🔥</p>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0, transition: { delay: 0.1 } }}
-          className="p-6 bg-white rounded-2xl shadow-lg border border-slate-200"
+          className="pixel-card bg-[#A8E6CF] p-6"
         >
-           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-blue-600" />
-              Upcoming Events
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="pixel-text text-xl flex items-center gap-2">
+              <Calendar className="w-6 h-6" />
+              Upcoming Quests
             </h3>
-            <Bell className="w-5 h-5 text-slate-400" />
+            <Bell className="w-6 h-6 text-[#FF6B9D]" />
           </div>
-           {dashboardData.upcomingEvents.length > 0 ? (
+          {dashboardData.upcomingEvents.length > 0 ? (
             <div className="space-y-3">
-              {dashboardData.upcomingEvents.slice(0, 3).map((event) => (
-                <div key={`${event.type}-${event.id}`} className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <span className="text-sm font-bold text-blue-700">
-                      {format(new Date(event.date), 'dd')}
-                    </span>
+              {dashboardData.upcomingEvents.slice(0, 4).map((event, idx) => (
+                <motion.div 
+                  key={`${event.type}-${event.id}`}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0, transition: { delay: idx * 0.1 } }}
+                  className="pixel-item bg-white p-3 flex items-center gap-3"
+                >
+                  <div className="pixel-date bg-[#FF6B9D] text-white">
+                    {format(new Date(event.date), 'dd')}
                   </div>
                   <div className="flex-1 overflow-hidden">
-                    <h4 className="font-semibold text-sm text-slate-800 truncate">{event.title}</h4>
-                    <p className="text-xs text-slate-500">{getDateLabel(event.date)}</p>
+                    <h4 className="font-bold text-sm truncate">{event.title}</h4>
+                    <p className="text-xs text-gray-600">{getDateLabel(event.date)}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           ) : (
-            <div className="text-center py-6 text-slate-400">
-              <p className="text-sm">No upcoming events</p>
+            <div className="text-center py-8 text-gray-600">
+              <p className="pixel-text">No quests yet! 🎯</p>
             </div>
           )}
         </motion.div>
 
+        {/* Right Column - Recent Uploads */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0, transition: { delay: 0.2 } }}
-          className="p-6 bg-white rounded-2xl shadow-lg border border-slate-200"
+          className="pixel-card bg-[#C7CEEA] p-6"
         >
-          <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
-            <Upload className="w-5 h-5 text-emerald-600" />
-            Recent Uploads
+          <h3 className="pixel-text text-xl mb-4 flex items-center gap-2">
+            <Upload className="w-6 h-6" />
+            Recent Loot
           </h3>
-           {dashboardData.recentUploads.length > 0 ? (
+          {dashboardData.recentUploads.length > 0 ? (
             <div className="space-y-3">
-              {dashboardData.recentUploads.slice(0, 3).map((resource) => (
-                <div key={resource.id} className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              {dashboardData.recentUploads.slice(0, 4).map((resource, idx) => (
+                <motion.div 
+                  key={resource.id}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0, transition: { delay: idx * 0.1 } }}
+                  className="pixel-item bg-white p-3 flex items-center gap-3"
+                >
+                  <div className="pixel-icon-sm bg-[#8B5CF6] text-white">
                     {getResourceIcon(resource.type)}
                   </div>
                   <div className="flex-1 overflow-hidden">
-                    <h4 className="font-semibold text-sm text-slate-800 truncate">{resource.title}</h4>
-                    <p className="text-xs text-slate-500">{resource.subject}</p>
+                    <h4 className="font-bold text-sm truncate">{resource.title}</h4>
+                    <p className="text-xs text-gray-600">{resource.subject}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           ) : (
-             <div className="text-center py-6 text-slate-400">
-              <p className="text-sm">No recent uploads</p>
+            <div className="text-center py-8 text-gray-600">
+              <p className="pixel-text">No loot yet! 📦</p>
             </div>
           )}
         </motion.div>
       </div>
+
+      {/* Search Bar */}
+      <Link to={createPageUrl("Search")}>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { delay: 0.3 } }}
+          className="pixel-card bg-white p-4 cursor-pointer hover:bg-[#FFE5E5] transition-colors relative"
+        >
+          <div className="flex items-center gap-3">
+            <SearchIcon className="w-6 h-6 text-[#FF6B9D]" />
+            <span className="text-gray-500">Search flashcards, notes, chats...</span>
+          </div>
+          <Sparkles className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-[#FFD93D]" />
+        </motion.div>
+      </Link>
     </div>
   );
 }
