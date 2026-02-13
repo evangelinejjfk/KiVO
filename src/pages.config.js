@@ -48,9 +48,11 @@
  * The mainPage value must match a key in the PAGES object exactly.
  */
 import AIChat from './pages/AIChat';
+import Achievements from './pages/Achievements';
 import CalendarView from './pages/CalendarView';
 import ChatHistory from './pages/ChatHistory';
 import Dashboard from './pages/Dashboard';
+import DocumentAnalyzer from './pages/DocumentAnalyzer';
 import Flashcards from './pages/Flashcards';
 import MoneyFlow from './pages/MoneyFlow';
 import ProfileSetup from './pages/ProfileSetup';
@@ -61,17 +63,16 @@ import Search from './pages/Search';
 import Settings from './pages/Settings';
 import Wellness from './pages/Wellness';
 import YearbookGenerator from './pages/YearbookGenerator';
-import StudyPlanner from './pages/StudyPlanner';
-import DocumentAnalyzer from './pages/DocumentAnalyzer';
-import Achievements from './pages/Achievements';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
     "AIChat": AIChat,
+    "Achievements": Achievements,
     "CalendarView": CalendarView,
     "ChatHistory": ChatHistory,
     "Dashboard": Dashboard,
+    "DocumentAnalyzer": DocumentAnalyzer,
     "Flashcards": Flashcards,
     "MoneyFlow": MoneyFlow,
     "ProfileSetup": ProfileSetup,
@@ -82,9 +83,6 @@ export const PAGES = {
     "Settings": Settings,
     "Wellness": Wellness,
     "YearbookGenerator": YearbookGenerator,
-    "StudyPlanner": StudyPlanner,
-    "DocumentAnalyzer": DocumentAnalyzer,
-    "Achievements": Achievements,
 }
 
 export const pagesConfig = {

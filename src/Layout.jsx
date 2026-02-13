@@ -27,7 +27,6 @@ const navItems = [
     subItems: [
       { name: "Flashcards", href: createPageUrl("Flashcards"), icon: Brain },
       { name: "Quick Reference", href: createPageUrl("QuickReference"), icon: FileText },
-      { name: "Study Planner", href: createPageUrl("StudyPlanner"), icon: Calendar },
       { name: "Document Analyzer", href: createPageUrl("DocumentAnalyzer"), icon: Upload },
     ]
   },

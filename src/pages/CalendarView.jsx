@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect } from "react";
 import { Homework } from "@/entities/Homework";
 import { Event } from "@/entities/Event";
 import { User } from "@/entities/User";
-import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, isSameMonth, isSameDay, addMonths, subMonths } from "date-fns";
+import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, isSameMonth, isSameDay, addMonths, subMonths, parseISO } from "date-fns";
 import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 import EventForm from "../components/EventForm";
 import { AnimatePresence } from "framer-motion";
@@ -73,7 +72,7 @@ export default function CalendarView() {
   const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const homeworkByDate = homeworks.reduce((acc, hw) => {
-    const date = format(new Date(hw.dueDate), 'yyyy-MM-dd');
+    const date = hw.dueDate;
     if (!acc[date]) {
       acc[date] = [];
     }
@@ -82,7 +81,7 @@ export default function CalendarView() {
   }, {});
 
   const eventsByDate = events.reduce((acc, event) => {
-    const date = format(new Date(event.date), 'yyyy-MM-dd');
+    const date = event.date;
     if (!acc[date]) {
       acc[date] = [];
     }
