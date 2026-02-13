@@ -64,6 +64,17 @@ export default function Settings() {
     // Delete all user data
     const user = await base44.auth.me();
     
+    // Helper to safely delete entities
+    const safeDelete = async (entity, items) => {
+      for (const item of items) {
+        try {
+          await entity.delete(item.id);
+        } catch (error) {
+          console.log(`Failed to delete ${item.id}:`, error);
+        }
+      }
+    };
+
     // Delete all entities created by user
     const homeworks = await base44.entities.Homework.filter({ created_by: user.email });
     const events = await base44.entities.Event.filter({ created_by: user.email });
@@ -79,20 +90,20 @@ export default function Settings() {
     const achievements = await base44.entities.Achievement.filter({ created_by: user.email });
     const allPets = await base44.entities.Pet.filter({ created_by: user.email });
 
-    // Delete all
-    for (const hw of homeworks) await base44.entities.Homework.delete(hw.id);
-    for (const ev of events) await base44.entities.Event.delete(ev.id);
-    for (const fc of flashcards) await base44.entities.Flashcard.delete(fc.id);
-    for (const exp of expenses) await base44.entities.Expense.delete(exp.id);
-    for (const bud of budgets) await base44.entities.Budget.delete(bud.id);
-    for (const mem of memories) await base44.entities.Memory.delete(mem.id);
-    for (const yb of yearbooks) await base44.entities.Yearbook.delete(yb.id);
-    for (const mood of moods) await base44.entities.Mood.delete(mood.id);
-    for (const chat of aiChats) await base44.entities.AIChat.delete(chat.id);
-    for (const qr of quickRefs) await base44.entities.QuickReference.delete(qr.id);
-    for (const ua of userActivities) await base44.entities.UserActivity.delete(ua.id);
-    for (const ach of achievements) await base44.entities.Achievement.delete(ach.id);
-    for (const pet of allPets) await base44.entities.Pet.delete(pet.id);
+    // Delete all safely
+    await safeDelete(base44.entities.Homework, homeworks);
+    await safeDelete(base44.entities.Event, events);
+    await safeDelete(base44.entities.Flashcard, flashcards);
+    await safeDelete(base44.entities.Expense, expenses);
+    await safeDelete(base44.entities.Budget, budgets);
+    await safeDelete(base44.entities.Memory, memories);
+    await safeDelete(base44.entities.Yearbook, yearbooks);
+    await safeDelete(base44.entities.Mood, moods);
+    await safeDelete(base44.entities.AIChat, aiChats);
+    await safeDelete(base44.entities.QuickReference, quickRefs);
+    await safeDelete(base44.entities.UserActivity, userActivities);
+    await safeDelete(base44.entities.Achievement, achievements);
+    await safeDelete(base44.entities.Pet, allPets);
 
     // Reset user data
     await base44.auth.updateMe({ 
