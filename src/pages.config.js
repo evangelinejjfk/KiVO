@@ -53,13 +53,13 @@ import CalendarView from './pages/CalendarView';
 import ChatHistory from './pages/ChatHistory';
 import Dashboard from './pages/Dashboard';
 import Flashcards from './pages/Flashcards';
+import MoneyFlow from './pages/MoneyFlow';
 import ProfileSetup from './pages/ProfileSetup';
 import QuickReference from './pages/QuickReference';
 import ResourceHub from './pages/ResourceHub';
 import Scrapbook from './pages/Scrapbook';
 import Search from './pages/Search';
 import YearbookGenerator from './pages/YearbookGenerator';
-import MoneyFlow from './pages/MoneyFlow';
 import __Layout from './Layout.jsx';
 
 
@@ -70,13 +70,13 @@ export const PAGES = {
     "ChatHistory": ChatHistory,
     "Dashboard": Dashboard,
     "Flashcards": Flashcards,
+    "MoneyFlow": MoneyFlow,
     "ProfileSetup": ProfileSetup,
     "QuickReference": QuickReference,
     "ResourceHub": ResourceHub,
     "Scrapbook": Scrapbook,
     "Search": Search,
     "YearbookGenerator": YearbookGenerator,
-    "MoneyFlow": MoneyFlow,
 }
 
 export const pagesConfig = {

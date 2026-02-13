@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
-import { Search as SearchIcon, Calendar, TrendingUp, BookOpen, Bell, Upload, FileText, Image, Link as LinkIcon, Sparkles, Heart, Apple } from "lucide-react";
+import { Search as SearchIcon, Calendar, TrendingUp, BookOpen, Bell, Upload, FileText, Image, Link as LinkIcon, Sparkles, Heart, Apple, Smile } from "lucide-react";
 import { format, isToday, isTomorrow, addDays } from "date-fns";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import TamagotchiWidget from "../components/TamagotchiWidget";
+import MoodTracker from "../components/mood/MoodTracker";
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
@@ -15,6 +16,7 @@ export default function Dashboard() {
     streak: 0,
   });
   const [isLoading, setIsLoading] = useState(true);
+  const [showMoodTracker, setShowMoodTracker] = useState(false);
 
   useEffect(() => {
     loadDashboardData();
@@ -150,6 +152,25 @@ export default function Dashboard() {
               </div>
             </div>
           </motion.div>
+
+          <motion.button
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            whileHover={{ scale: 1.05 }}
+            onClick={() => setShowMoodTracker(true)}
+            className="pixel-card bg-gradient-to-br from-pink-100 to-purple-100 p-6 w-full text-left relative overflow-hidden"
+          >
+            <div className="absolute bottom-0 right-0 text-6xl opacity-20">💭</div>
+            <div className="flex items-center gap-4 relative z-10">
+              <div className="pixel-icon-sm bg-[#E0BBE4] text-white">
+                <Smile className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="pixel-text text-sm mb-1">How are you?</p>
+                <p className="text-xs font-bold text-gray-700">Log your mood +5 XP</p>
+              </div>
+            </div>
+          </motion.button>
         </div>
 
         {/* Middle Column - Upcoming Events */}
@@ -247,6 +268,13 @@ export default function Dashboard() {
           <Sparkles className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-[#9B4D96]" />
         </motion.div>
       </Link>
+
+      {/* Mood Tracker Modal */}
+      {showMoodTracker && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <MoodTracker onClose={() => setShowMoodTracker(false)} />
+        </div>
+      )}
     </div>
   );
 }
