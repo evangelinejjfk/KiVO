@@ -5,6 +5,7 @@ import { Calendar, LogOut, Upload, Brain, Bot, History, TrendingUp, Search as Se
 import { base44 } from "@/api/base44Client";
 import NavItem from './components/NavItem';
 import FloatingAddButton from "./components/FloatingAddButton";
+import OnboardingTour from "./components/OnboardingTour";
 
 const navItems = [
   { 
@@ -68,6 +69,7 @@ export default function Layout({ children, currentPageName }) {
   const [user, setUser] = useState(null);
   const [isCheckingProfile, setIsCheckingProfile] = useState(true);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   const checkUserProfile = useCallback(async () => {
     try {
@@ -136,18 +138,26 @@ export default function Layout({ children, currentPageName }) {
             </div>
             
             {user && !isSidebarCollapsed && (
-              <div className="flex items-center gap-3 p-3 pixel-card bg-[#FFF4C9]">
-                {user.profile_picture ? (
-                  <img src={user.profile_picture} alt="Profile" className="w-10 h-10 pixel-border-white object-cover" />
-                ) : (
-                  <div className="w-10 h-10 pixel-icon-sm bg-[#FFB6D9] text-white">
-                    {user.username?.[0]?.toUpperCase() || user.full_name?.[0]?.toUpperCase() || 'U'}
+              <div className="space-y-2">
+                <div className="flex items-center gap-3 p-3 pixel-card bg-[#FFF4C9]">
+                  {user.profile_picture ? (
+                    <img src={user.profile_picture} alt="Profile" className="w-10 h-10 pixel-border-white object-cover" />
+                  ) : (
+                    <div className="w-10 h-10 pixel-icon-sm bg-[#FFB6D9] text-white">
+                      {user.username?.[0]?.toUpperCase() || user.full_name?.[0]?.toUpperCase() || 'U'}
+                    </div>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <p className="font-bold text-sm text-gray-800 truncate">{user.username || user.full_name}</p>
+                    <p className="text-xs text-gray-600 font-bold">Level {user.level || 1} 🎮</p>
                   </div>
-                )}
-                <div className="flex-1 min-w-0">
-                  <p className="font-bold text-sm text-gray-800 truncate">{user.username || user.full_name}</p>
-                  <p className="text-xs text-gray-600 font-bold">Level {user.level || 1} 🎮</p>
                 </div>
+                <button
+                  onClick={() => setShowOnboarding(true)}
+                  className="pixel-button bg-[#E0BBE4] text-black w-full py-2 px-3 text-xs hover:bg-opacity-90"
+                >
+                  🎓 Tutorial
+                </button>
               </div>
             )}
           </header>
@@ -184,6 +194,10 @@ export default function Layout({ children, currentPageName }) {
         
         <FloatingAddButton />
       </div>
+
+      {showOnboarding && (
+        <OnboardingTour onComplete={() => setShowOnboarding(false)} />
+      )}
     </>
   );
 }
