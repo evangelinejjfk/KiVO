@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { Calendar, MessageCircle, LogOut, Upload, Brain, Moon, Sun, Bot, History, Users, TrendingUp, Search as SearchIcon, FileText, Palette, ChevronsLeft, ChevronsRight, LayoutDashboard, Feather, Book } from "lucide-react";
+import { Calendar, MessageCircle, LogOut, Upload, Brain, Moon, Sun, Bot, History, Users, TrendingUp, Search as SearchIcon, FileText, Palette, ChevronsLeft, ChevronsRight, LayoutDashboard, Feather, Book, Camera } from "lucide-react";
 import { User } from '@/entities/User';
 import MotivationCard from './components/MotivationCard';
 import NavItem from './components/NavItem';
@@ -37,6 +37,7 @@ const navItems = [
   },
   { name: "Search", href: createPageUrl("Search"), icon: SearchIcon },
   { name: "Analytics", href: createPageUrl("Analytics"), icon: TrendingUp },
+  { name: "Senior Scrapbook", href: createPageUrl("Scrapbook"), icon: Camera },
   { 
     name: "Customization", 
     icon: Feather,
