@@ -28,7 +28,6 @@ const navItems = [
     ]
   },
   { name: "Search", href: createPageUrl("Search"), icon: SearchIcon },
-  { name: "Analytics", href: createPageUrl("Analytics"), icon: TrendingUp },
   { name: "Scrapbook", href: createPageUrl("Scrapbook"), icon: Camera },
 ];
 
