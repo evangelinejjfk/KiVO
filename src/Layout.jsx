@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { Calendar, LogOut, Upload, Brain, Bot, History, TrendingUp, Search as SearchIcon, FileText, ChevronsLeft, ChevronsRight, LayoutDashboard, Book, Camera, DollarSign, Heart } from "lucide-react";
+import { Calendar, LogOut, Upload, Brain, Bot, History, TrendingUp, Search as SearchIcon, FileText, ChevronsLeft, ChevronsRight, LayoutDashboard, Book, Camera, DollarSign, Heart, Settings } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import NavItem from './components/NavItem';
 import FloatingAddButton from "./components/FloatingAddButton";
@@ -124,7 +124,15 @@ export default function Layout({ children, currentPageName }) {
             ))}
           </nav>
           
-          <div className={`p-4 border-t-4 border-black relative z-10 ${isSidebarCollapsed ? 'flex flex-col items-center' : ''}`}>
+          <div className={`p-4 border-t-4 border-black relative z-10 space-y-2 ${isSidebarCollapsed ? 'flex flex-col items-center' : ''}`}>
+            <Link 
+              to={createPageUrl("Settings")}
+              className="pixel-button bg-[#B8E8D4] text-black w-full py-3 px-4 flex items-center justify-center gap-3 hover:bg-opacity-90"
+              title={isSidebarCollapsed ? "Settings" : ''}
+            >
+              <Settings className="w-5 h-5" />
+              {!isSidebarCollapsed && <span className="font-bold">Settings</span>}
+            </Link>
             <button 
               onClick={handleLogout} 
               className="pixel-button bg-[#FFB6D9] text-white w-full py-3 px-4 flex items-center justify-center gap-3 hover:bg-opacity-90"

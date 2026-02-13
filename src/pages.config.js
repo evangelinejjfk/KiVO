@@ -48,7 +48,6 @@
  * The mainPage value must match a key in the PAGES object exactly.
  */
 import AIChat from './pages/AIChat';
-import Analytics from './pages/Analytics';
 import CalendarView from './pages/CalendarView';
 import ChatHistory from './pages/ChatHistory';
 import Dashboard from './pages/Dashboard';
@@ -61,12 +60,12 @@ import Scrapbook from './pages/Scrapbook';
 import Search from './pages/Search';
 import YearbookGenerator from './pages/YearbookGenerator';
 import Wellness from './pages/Wellness';
+import Settings from './pages/Settings';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
     "AIChat": AIChat,
-    "Analytics": Analytics,
     "CalendarView": CalendarView,
     "ChatHistory": ChatHistory,
     "Dashboard": Dashboard,
@@ -79,6 +78,7 @@ export const PAGES = {
     "Search": Search,
     "YearbookGenerator": YearbookGenerator,
     "Wellness": Wellness,
+    "Settings": Settings,
 }
 
 export const pagesConfig = {
