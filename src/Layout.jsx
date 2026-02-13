@@ -84,11 +84,13 @@ export default function Layout({ children, currentPageName }) {
             <div className="flex items-center justify-between mb-3">
               {!isSidebarCollapsed && (
                 <div className="flex items-center gap-3">
-                  <div className="pixel-icon-sm bg-[#FFB6D9] w-10 h-10">
-                    <span className="text-white font-bold text-xl">K</span>
-                  </div>
+                  <img 
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/698f4fc393c74430f4d2e3a3/c435ef5f8_ChatGPT_Image_Feb_13__2026__01_14_48_PM-removebg-preview.png" 
+                    alt="KiVO Logo" 
+                    className="w-10 h-10 object-contain"
+                  />
                   <div>
-                    <h1 className="text-xl font-bold text-[#9B4D96] pixel-text">Kivo</h1>
+                    <h1 className="text-xl font-bold text-[#9B4D96] pixel-text">KiVO</h1>
                     <p className="text-xs text-gray-600 font-bold">Student Hub</p>
                   </div>
                 </div>
