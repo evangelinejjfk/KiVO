@@ -10,6 +10,7 @@ const navItems = [
   { name: "Dashboard", href: createPageUrl("Dashboard"), icon: LayoutDashboard },
   { name: "Calendar", href: createPageUrl("CalendarView"), icon: Calendar },
   { name: "MoneyFlow", href: createPageUrl("MoneyFlow"), icon: DollarSign },
+  { name: "Wellness", href: createPageUrl("Wellness"), icon: Heart },
   { 
     name: "Study Tools", 
     icon: Book,
