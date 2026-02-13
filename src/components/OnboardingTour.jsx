@@ -84,7 +84,11 @@ export default function OnboardingTour({ onComplete }) {
           </button>
 
           <div className="text-center mb-6">
-            <Sparkles className="w-12 h-12 mx-auto mb-4 text-[#9B4D96]" />
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/698f4fc393c74430f4d2e3a3/4223e3009_ChatGPT_Image_Feb_13__2026__02_44_22_PM-removebg-preview.png"
+              alt="Kivy the mascot"
+              className="w-24 h-24 mx-auto mb-4 object-contain animate-bounce"
+            />
             <h2 className="pixel-text text-xl mb-3">{step.title}</h2>
             <p className="text-gray-700 font-bold">{step.description}</p>
           </div>
