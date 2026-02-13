@@ -60,8 +60,6 @@ import ResourceHub from './pages/ResourceHub';
 import Search from './pages/Search';
 import SharedCalendar from './pages/SharedCalendar';
 import ThemeCustomizer from './pages/ThemeCustomizer';
-import Scrapbook from './pages/Scrapbook';
-import YearbookGenerator from './pages/YearbookGenerator';
 import __Layout from './Layout.jsx';
 
 
@@ -79,8 +77,6 @@ export const PAGES = {
     "Search": Search,
     "SharedCalendar": SharedCalendar,
     "ThemeCustomizer": ThemeCustomizer,
-    "Scrapbook": Scrapbook,
-    "YearbookGenerator": YearbookGenerator,
 }
 
 export const pagesConfig = {
