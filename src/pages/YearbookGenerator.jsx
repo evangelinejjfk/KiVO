@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { BookOpen, Sparkles, Loader2, ArrowLeft, Download, ChevronDown, ChevronUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import YearbookPreview from "@/components/scrapbook/YearbookPreview.js";
+import YearbookPreview from "../components/scrapbook/YearbookPreview";
 
 export default function YearbookGenerator() {
   const [memories, setMemories] = useState([]);

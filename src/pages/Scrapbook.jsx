@@ -5,8 +5,8 @@ import { createPageUrl } from "@/utils";
 import { Button } from "@/components/ui/button";
 import { Plus, BookOpen, Camera, Sparkles, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import MemoryCard from "@/components/scrapbook/MemoryCard.js";
-import MemoryForm from "@/components/scrapbook/MemoryForm.js";
+import MemoryCard from "../components/scrapbook/MemoryCard";
+import MemoryForm from "../components/scrapbook/MemoryForm";
 
 export default function Scrapbook() {
   const [memories, setMemories] = useState([]);
