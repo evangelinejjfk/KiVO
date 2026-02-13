@@ -5,7 +5,7 @@ import { createPageUrl } from "@/utils";
 import { Link } from "react-router-dom";
 
 const actions = [
-  { name: "Add Homework", icon: BookOpen, href: createPageUrl("Dashboard"), action: "homework" },
+  { name: "Add Homework", icon: BookOpen, href: createPageUrl("CalendarView"), action: "homework" },
   { name: "Add Flashcard", icon: Brain, href: createPageUrl("Flashcards"), action: "flashcard" },
   { name: "Add Quick Ref", icon: FileText, href: createPageUrl("QuickReference"), action: "quickref" },
   { name: "Upload Note", icon: Upload, href: createPageUrl("ResourceHub"), action: "upload" },
@@ -82,17 +82,10 @@ export default function FloatingAddButton() {
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center gap-3"
               >
-                <motion.span 
-                  className="p-2 bg-white text-black border-2 border-black rounded-lg text-sm font-semibold neo-shadow-small whitespace-nowrap"
-                  initial={{ opacity: 0, x: 10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 }}
-                >
-                  {action.name}
-                </motion.span>
-                <Link to={action.href} onClick={() => handleActionClick(action)}>
-                  <button className="w-12 h-12 bg-white border-2 border-black rounded-full flex items-center justify-center neo-shadow-small hover:neo-shadow active:shadow-none transform active:translate-x-[1px] active:translate-y-[1px] transition-all duration-150">
-                    <action.icon className="w-5 h-5 text-black" />
+                <Link to={action.href} onClick={() => handleActionClick(action)} className="w-full">
+                  <button className="pixel-button bg-[#FFD93D] text-black px-4 py-2 flex items-center gap-2 text-sm w-full whitespace-nowrap">
+                    <action.icon className="w-4 h-4 text-black" />
+                    {action.name}
                   </button>
                 </Link>
               </motion.div>
@@ -103,17 +96,17 @@ export default function FloatingAddButton() {
 
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-16 h-16 bg-[#98FB98] border-4 border-black rounded-full neo-shadow flex items-center justify-center text-3xl font-bold hover:neo-shadow-small active:shadow-none transform active:translate-x-[2px] active:translate-y-[2px] transition-all duration-150"
+        className="pixel-button bg-[#FF6B9D] text-white w-14 h-14 flex items-center justify-center shadow-lg"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        style={{ zIndex: 60 }} // Ensure it's always on top
+        style={{ zIndex: 60 }}
       >
         <motion.div 
           variants={fabVariants} 
           animate={isOpen ? "open" : "closed"}
           transition={{ duration: 0.2 }}
         >
-          <Plus className="w-8 h-8 text-black" />
+          <Plus className="w-6 h-6 text-white" />
         </motion.div>
       </motion.button>
     </div>

@@ -16,16 +16,16 @@ export default function NavItem({ item, isSidebarCollapsed }) {
       <div>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`flex items-center justify-between w-full py-2.5 px-3 rounded-lg hover:bg-slate-100 transition-colors text-slate-700 ${
+          className={`flex items-center justify-between w-full py-2.5 px-3 pixel-button bg-white hover:bg-gray-100 text-gray-800 ${
             isSidebarCollapsed ? 'justify-center px-2' : ''
           }`}
         >
           <div className="flex items-center gap-3">
-            <item.icon className="w-5 h-5" />
+            <item.icon className="w-5 h-5 text-black" />
             {!isSidebarCollapsed && <span className="font-medium">{item.name}</span>}
           </div>
           {!isSidebarCollapsed && (
-            isOpen ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />
+            isOpen ? <ChevronDown className="w-4 h-4 text-black" /> : <ChevronRight className="w-4 h-4 text-black" />
           )}
         </button>
 
@@ -42,10 +42,10 @@ export default function NavItem({ item, isSidebarCollapsed }) {
                 <Link
                   key={subItem.name}
                   to={subItem.href}
-                  className={`flex items-center gap-3 py-2 px-3 rounded-lg transition-all text-sm ${
+                  className={`flex items-center gap-3 py-2 px-3 pixel-item transition-all text-sm ${
                     isActive(subItem.href)
-                      ? 'bg-blue-50 text-blue-700 font-semibold'
-                      : 'text-slate-600 hover:bg-slate-100'
+                      ? 'bg-[#A8E6CF] text-black font-semibold'
+                      : 'text-gray-800 hover:bg-gray-100'
                   }`}
                 >
                   <subItem.icon className="w-4 h-4" />
@@ -62,14 +62,14 @@ export default function NavItem({ item, isSidebarCollapsed }) {
   return (
     <Link
       to={item.href}
-      className={`flex items-center gap-3 py-2.5 px-3 rounded-lg transition-all ${
+      className={`flex items-center gap-3 py-2.5 px-3 pixel-button transition-all ${
         isActive(item.href) 
-          ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold shadow-md' 
-          : 'text-slate-700 hover:bg-slate-100'
+          ? 'bg-[#FF6B9D] text-white font-semibold' 
+          : 'bg-white text-gray-800 hover:bg-gray-100'
       } ${isSidebarCollapsed ? 'justify-center px-2' : ''}`}
       title={isSidebarCollapsed ? item.name : ''}
     >
-      <item.icon className="w-5 h-5" />
+      <item.icon className="w-5 h-5 text-black" />
       {!isSidebarCollapsed && <span className="font-medium">{item.name}</span>}
     </Link>
   );
