@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
-import { Settings as SettingsIcon, Trash2, Plus, Check, AlertTriangle } from "lucide-react";
+import { Settings as SettingsIcon, Trash2, Plus, Check, AlertTriangle, Palette } from "lucide-react";
 import { motion } from "framer-motion";
+import PetCustomization from "../components/PetCustomization";
 
 const petEmojis = {
   cat: "🐱",
@@ -9,6 +10,15 @@ const petEmojis = {
   dragon: "🐲",
   bunny: "🐰",
   fox: "🦊"
+};
+
+const ACCESSORIES_MAP = {
+  crown: "👑",
+  glasses: "🕶️",
+  bowtie: "🎀",
+  hat: "🎩",
+  star: "⭐",
+  heart: "💖"
 };
 
 export default function Settings() {
@@ -19,6 +29,8 @@ export default function Settings() {
   const [showBuyPet, setShowBuyPet] = useState(false);
   const [newPetName, setNewPetName] = useState("");
   const [newPetType, setNewPetType] = useState("cat");
+  const [showCustomization, setShowCustomization] = useState(false);
+  const [selectedPet, setSelectedPet] = useState(null);
 
   useEffect(() => {
     loadPets();
@@ -153,26 +165,50 @@ export default function Settings() {
                 className={`pixel-item p-4 flex items-center justify-between ${activePetId === pet.id ? 'bg-[#FFE5F4]' : 'bg-gray-50'}`}
               >
                 <div className="flex items-center gap-4">
-                  <div className="text-4xl">{petEmojis[pet.type]}</div>
+                  <div className="relative">
+                    <div 
+                      className="text-4xl p-2 pixel-border-white"
+                      style={{ backgroundColor: pet.color || '#FF6B9D' }}
+                    >
+                      {petEmojis[pet.type]}
+                    </div>
+                    {pet.active_accessory && pet.active_accessory !== "none" && (
+                      <div className="absolute -top-1 -right-1 text-2xl">
+                        {ACCESSORIES_MAP[pet.active_accessory]}
+                      </div>
+                    )}
+                  </div>
                   <div>
                     <p className="font-bold">{pet.name}</p>
                     <p className="text-sm text-gray-600">Level {pet.level} • {pet.type}</p>
                   </div>
                 </div>
-                {activePetId !== pet.id && (
+                <div className="flex gap-2">
                   <button
-                    onClick={() => switchPet(pet.id)}
-                    className="pixel-button bg-[#FFB6D9] text-white px-4 py-2 text-xs"
+                    onClick={() => {
+                      setSelectedPet(pet);
+                      setShowCustomization(true);
+                    }}
+                    className="pixel-button bg-[#E0BBE4] text-black px-4 py-2 text-xs"
                   >
-                    Switch
+                    <Palette className="w-4 h-4 inline mr-1" />
+                    Customize
                   </button>
-                )}
-                {activePetId === pet.id && (
-                  <div className="flex items-center gap-2 text-green-600">
-                    <Check className="w-5 h-5" />
-                    <span className="font-bold text-sm">Active</span>
-                  </div>
-                )}
+                  {activePetId !== pet.id && (
+                    <button
+                      onClick={() => switchPet(pet.id)}
+                      className="pixel-button bg-[#FFB6D9] text-white px-4 py-2 text-xs"
+                    >
+                      Switch
+                    </button>
+                  )}
+                  {activePetId === pet.id && (
+                    <div className="flex items-center gap-2 text-green-600">
+                      <Check className="w-5 h-5" />
+                      <span className="font-bold text-sm">Active</span>
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -274,6 +310,34 @@ export default function Settings() {
           </div>
         )}
       </motion.div>
+
+      {/* Pet Customization Modal */}
+      {showCustomization && selectedPet && (
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="pixel-card bg-white max-w-2xl w-full max-h-[80vh] overflow-y-auto p-8"
+          >
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="pixel-text text-xl">Customize {selectedPet.name}</h2>
+              <button
+                onClick={() => {
+                  setShowCustomization(false);
+                  setSelectedPet(null);
+                }}
+                className="pixel-button bg-gray-200 text-black px-4 py-2"
+              >
+                Close
+              </button>
+            </div>
+            <PetCustomization 
+              pet={selectedPet} 
+              onUpdate={loadPets}
+            />
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }
