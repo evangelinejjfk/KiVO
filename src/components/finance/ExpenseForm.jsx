@@ -39,6 +39,12 @@ export default function ExpenseForm({ onClose, onSuccess }) {
         note: note.trim() || null,
         date
       });
+      
+      // Award XP for tracking expense
+      if (window.awardPetXP) {
+        await window.awardPetXP(3);
+      }
+      
       onSuccess();
     } catch (error) {
       console.error("Failed to create expense:", error);
