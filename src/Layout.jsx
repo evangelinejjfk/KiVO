@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Calendar, MessageCircle, LogOut, Upload, Brain, Bot, History, Users, TrendingUp, Search as SearchIcon, FileText, ChevronsLeft, ChevronsRight, LayoutDashboard, Book, Camera } from "lucide-react";
 import { base44 } from "@/api/base44Client";
-import NavItem from './components/NavItem.js';
+import NavItem from './components/NavItem';
 import FloatingAddButton from "./components/FloatingAddButton";
 
 const navItems = [
