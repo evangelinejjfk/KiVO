@@ -117,7 +117,7 @@ export default function Layout({ children, currentPageName }) {
               {!isSidebarCollapsed && (
                 <div className="flex items-center gap-3">
                   <img 
-                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/698f4fc393c74430f4d2e3a3/c435ef5f8_ChatGPT_Image_Feb_13__2026__01_14_48_PM-removebg-preview.png" 
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/698f4fc393c74430f4d2e3a3/be5048867_ChatGPT_Image_Feb_13__2026__02_43_04_PM-removebg-preview.png" 
                     alt="KiVO Logo" 
                     className="w-16 h-16 object-contain"
                   />
