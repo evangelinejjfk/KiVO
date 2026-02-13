@@ -59,6 +59,7 @@ import ResourceHub from './pages/ResourceHub';
 import Scrapbook from './pages/Scrapbook';
 import Search from './pages/Search';
 import YearbookGenerator from './pages/YearbookGenerator';
+import MoneyFlow from './pages/MoneyFlow';
 import __Layout from './Layout.jsx';
 
 
@@ -75,6 +76,7 @@ export const PAGES = {
     "Scrapbook": Scrapbook,
     "Search": Search,
     "YearbookGenerator": YearbookGenerator,
+    "MoneyFlow": MoneyFlow,
 }
 
 export const pagesConfig = {

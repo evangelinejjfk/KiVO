@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { Calendar, LogOut, Upload, Brain, Bot, History, TrendingUp, Search as SearchIcon, FileText, ChevronsLeft, ChevronsRight, LayoutDashboard, Book, Camera } from "lucide-react";
+import { Calendar, LogOut, Upload, Brain, Bot, History, TrendingUp, Search as SearchIcon, FileText, ChevronsLeft, ChevronsRight, LayoutDashboard, Book, Camera, DollarSign } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import NavItem from './components/NavItem';
 import FloatingAddButton from "./components/FloatingAddButton";
@@ -9,6 +9,7 @@ import FloatingAddButton from "./components/FloatingAddButton";
 const navItems = [
   { name: "Dashboard", href: createPageUrl("Dashboard"), icon: LayoutDashboard },
   { name: "Calendar", href: createPageUrl("CalendarView"), icon: Calendar },
+  { name: "MoneyFlow", href: createPageUrl("MoneyFlow"), icon: DollarSign },
   { 
     name: "Study Tools", 
     icon: Book,
