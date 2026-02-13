@@ -126,14 +126,14 @@ export default function TamagotchiWidget() {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         whileHover={{ scale: 1.02 }}
-        className="pixel-card bg-gradient-to-br from-[#FFE5E5] via-[#FFD93D] to-[#A8E6CF] p-8 text-center relative overflow-hidden"
+        className="pixel-card bg-[#FFE5F4] p-8 text-center relative overflow-hidden"
       >
         <div className="absolute top-0 right-0 text-6xl opacity-20">✨</div>
         <div className="text-6xl mb-4 animate-bounce">🥚</div>
-        <p className="pixel-text text-lg mb-4 drop-shadow">Adopt Your Study Buddy!</p>
+        <p className="pixel-text text-lg mb-4">Adopt Your Study Buddy!</p>
         <button
           onClick={() => setShowCreateForm(true)}
-          className="pixel-button bg-gradient-to-r from-[#FF6B9D] to-[#C147E9] text-white px-6 py-3 flex items-center gap-2 mx-auto"
+          className="pixel-button bg-[#FFB6D9] text-white px-6 py-3 flex items-center gap-2 mx-auto"
         >
           <Plus className="w-5 h-5" />
           Create Pet
@@ -177,7 +177,7 @@ export default function TamagotchiWidget() {
               ))}
             </div>
           </div>
-          <button type="submit" className="pixel-button bg-gradient-to-r from-[#FF6B9D] to-[#C147E9] text-white w-full py-3">
+          <button type="submit" className="pixel-button bg-[#FFB6D9] text-white w-full py-3">
             <Sparkles className="w-5 h-5 inline mr-2" />
             Hatch Pet!
           </button>
@@ -193,7 +193,7 @@ export default function TamagotchiWidget() {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ scale: 1.02 }}
-      className="pixel-card bg-gradient-to-br from-[#FF6B9D] via-[#FFD93D] to-[#FFA500] p-6 relative overflow-hidden"
+      className="pixel-card bg-[#E0BBE4] p-6 relative overflow-hidden"
     >
       <div className="absolute top-0 left-0 w-full h-full opacity-10">
         <div className="pixel-grid"></div>
@@ -223,9 +223,9 @@ export default function TamagotchiWidget() {
 
       <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-16 -mt-16"></div>
       <div className="text-center mb-4 relative z-10">
-        <h3 className="pixel-text text-lg mb-2 text-white drop-shadow-lg">{pet.name}</h3>
+        <h3 className="pixel-text text-lg mb-2 text-gray-800">{pet.name}</h3>
         <div className="text-6xl mb-2 animate-bounce">{petEmojis[pet.type]}</div>
-        <p className="text-sm font-bold bg-white bg-opacity-20 inline-block px-3 py-1 rounded-full text-white">
+        <p className="text-sm font-bold bg-white inline-block px-3 py-1 rounded-full text-gray-800">
           Level {pet.level} ⭐
         </p>
       </div>
@@ -235,14 +235,14 @@ export default function TamagotchiWidget() {
         {/* Happiness */}
         <div>
           <div className="flex items-center justify-between mb-1">
-            <span className="text-sm font-bold flex items-center gap-1 text-white">
-              <Heart className="w-4 h-4 text-pink-300" /> Happy
+            <span className="text-sm font-bold flex items-center gap-1 text-gray-700">
+              <Heart className="w-4 h-4 text-[#FFB6D9]" /> Happy
             </span>
-            <span className="text-sm font-bold text-white">{pet.happiness}%</span>
+            <span className="text-sm font-bold text-gray-700">{pet.happiness}%</span>
           </div>
-          <div className="pixel-progress-bar bg-pink-200">
+          <div className="pixel-progress-bar bg-pink-100">
             <div 
-              className="pixel-progress-fill bg-gradient-to-r from-pink-400 to-red-400"
+              className="pixel-progress-fill bg-[#FFB6D9]"
               style={{ width: `${pet.happiness}%` }}
             ></div>
           </div>
@@ -251,14 +251,14 @@ export default function TamagotchiWidget() {
         {/* Hunger */}
         <div>
           <div className="flex items-center justify-between mb-1">
-            <span className="text-sm font-bold flex items-center gap-1 text-white">
-              <Apple className="w-4 h-4 text-green-300" /> Hunger
+            <span className="text-sm font-bold flex items-center gap-1 text-gray-700">
+              <Apple className="w-4 h-4 text-[#B8E8D4]" /> Hunger
             </span>
-            <span className="text-sm font-bold text-white">{pet.hunger}%</span>
+            <span className="text-sm font-bold text-gray-700">{pet.hunger}%</span>
           </div>
-          <div className="pixel-progress-bar bg-orange-200">
+          <div className="pixel-progress-bar bg-green-100">
             <div 
-              className="pixel-progress-fill bg-gradient-to-r from-yellow-400 to-orange-400"
+              className="pixel-progress-fill bg-[#B8E8D4]"
               style={{ width: `${pet.hunger}%` }}
             ></div>
           </div>
@@ -267,12 +267,12 @@ export default function TamagotchiWidget() {
         {/* XP */}
         <div>
           <div className="flex items-center justify-between mb-1">
-            <span className="text-sm font-bold text-white">⭐ XP to Level {pet.level + 1}</span>
-            <span className="text-sm font-bold text-white">{pet.xp}/{pet.level * 100}</span>
+            <span className="text-sm font-bold text-gray-700">⭐ XP to Level {pet.level + 1}</span>
+            <span className="text-sm font-bold text-gray-700">{pet.xp}/{pet.level * 100}</span>
           </div>
-          <div className="pixel-progress-bar bg-yellow-200">
+          <div className="pixel-progress-bar bg-yellow-100">
             <div 
-              className="pixel-progress-fill bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500"
+              className="pixel-progress-fill bg-[#FFF4C9]"
               style={{ width: `${xpProgress}%` }}
             ></div>
           </div>
@@ -280,9 +280,9 @@ export default function TamagotchiWidget() {
       </div>
 
       {/* XP Guide */}
-      <div className="mt-4 p-3 bg-white bg-opacity-20 rounded-lg relative z-10">
-        <p className="text-xs font-bold mb-2 text-white">🎮 Earn XP by:</p>
-        <div className="space-y-1 text-xs text-white">
+      <div className="mt-4 p-3 bg-white bg-opacity-50 rounded-lg relative z-10">
+        <p className="text-xs font-bold mb-2 text-gray-700">🎮 Earn XP by:</p>
+        <div className="space-y-1 text-xs text-gray-700">
           <p>📝 Scrapbook: +20 XP</p>
           <p>🤖 AI Questions: +10 XP</p>
           <p>🗓️ Calendar Events: +5 XP</p>

@@ -75,21 +75,21 @@ export default function Layout({ children, currentPageName }) {
     <>
       <div className="min-h-screen flex flex-col md:flex-row bg-pixel-bg">
         <aside 
-          className={`pixel-card border-r-4 border-black bg-gradient-to-br from-[#FF6B9D] via-[#FFD93D] to-[#A8E6CF] flex flex-col transition-all duration-300 ${isSidebarCollapsed ? 'md:w-20' : 'md:w-72'} w-full relative overflow-hidden`}
+          className={`pixel-card border-r-4 border-black bg-[#FFE5F4] flex flex-col transition-all duration-300 ${isSidebarCollapsed ? 'md:w-20' : 'md:w-72'} w-full relative overflow-hidden`}
         >
           <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
             <div className="pixel-grid"></div>
           </div>
-          <header className={`p-6 border-b-4 border-black transition-all ${isSidebarCollapsed ? 'p-4' : ''} relative z-10 bg-white bg-opacity-20`}>
+          <header className={`p-6 border-b-4 border-black transition-all ${isSidebarCollapsed ? 'p-4' : ''} relative z-10`}>
             <div className="flex items-center justify-between mb-3">
               {!isSidebarCollapsed && (
                 <div className="flex items-center gap-3">
-                  <div className="pixel-icon-sm bg-white w-10 h-10 animate-pulse">
-                    <span className="text-[#FF6B9D] font-bold text-xl">K</span>
+                  <div className="pixel-icon-sm bg-[#FFB6D9] w-10 h-10">
+                    <span className="text-white font-bold text-xl">K</span>
                   </div>
                   <div>
-                    <h1 className="text-xl font-bold text-white pixel-text drop-shadow-lg">Kivo</h1>
-                    <p className="text-xs text-white font-bold drop-shadow">Student Hub</p>
+                    <h1 className="text-xl font-bold text-[#9B4D96] pixel-text">Kivo</h1>
+                    <p className="text-xs text-gray-600 font-bold">Student Hub</p>
                   </div>
                 </div>
               )}
@@ -102,17 +102,17 @@ export default function Layout({ children, currentPageName }) {
             </div>
             
             {user && !isSidebarCollapsed && (
-              <div className="flex items-center gap-3 p-3 pixel-card bg-white bg-opacity-30 backdrop-blur-sm">
+              <div className="flex items-center gap-3 p-3 pixel-card bg-[#FFF4C9]">
                 {user.profile_picture ? (
                   <img src={user.profile_picture} alt="Profile" className="w-10 h-10 pixel-border-white object-cover" />
                 ) : (
-                  <div className="w-10 h-10 pixel-icon-sm bg-white text-[#FF6B9D]">
+                  <div className="w-10 h-10 pixel-icon-sm bg-[#FFB6D9] text-white">
                     {user.username?.[0]?.toUpperCase() || user.full_name?.[0]?.toUpperCase() || 'U'}
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
-                  <p className="font-bold text-sm text-white truncate drop-shadow">{user.username || user.full_name}</p>
-                  <p className="text-xs text-white font-bold drop-shadow">Level {user.level || 1} 🎮</p>
+                  <p className="font-bold text-sm text-gray-800 truncate">{user.username || user.full_name}</p>
+                  <p className="text-xs text-gray-600 font-bold">Level {user.level || 1} 🎮</p>
                 </div>
               </div>
             )}
@@ -124,10 +124,10 @@ export default function Layout({ children, currentPageName }) {
             ))}
           </nav>
           
-          <div className={`p-4 border-t-4 border-black relative z-10 bg-white bg-opacity-20 ${isSidebarCollapsed ? 'flex flex-col items-center' : ''}`}>
+          <div className={`p-4 border-t-4 border-black relative z-10 ${isSidebarCollapsed ? 'flex flex-col items-center' : ''}`}>
             <button 
               onClick={handleLogout} 
-              className="pixel-button bg-white text-[#FF6B9D] w-full py-3 px-4 flex items-center justify-center gap-3 hover:bg-opacity-90"
+              className="pixel-button bg-[#FFB6D9] text-white w-full py-3 px-4 flex items-center justify-center gap-3 hover:bg-opacity-90"
               title={isSidebarCollapsed ? "Log Out" : ''}
             >
               <LogOut className="w-5 h-5" />

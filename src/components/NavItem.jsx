@@ -16,13 +16,13 @@ export default function NavItem({ item, isSidebarCollapsed }) {
       <div>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`flex items-center justify-between w-full py-2.5 px-3 pixel-button bg-white bg-opacity-20 hover:bg-opacity-30 text-white ${
+          className={`flex items-center justify-between w-full py-2.5 px-3 pixel-button bg-white hover:bg-[#FFF4C9] text-gray-800 ${
             isSidebarCollapsed ? 'justify-center px-2' : ''
           }`}
         >
           <div className="flex items-center gap-3">
             <item.icon className="w-5 h-5" />
-            {!isSidebarCollapsed && <span className="font-bold drop-shadow">{item.name}</span>}
+            {!isSidebarCollapsed && <span className="font-bold">{item.name}</span>}
           </div>
           {!isSidebarCollapsed && (
             isOpen ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />
@@ -44,8 +44,8 @@ export default function NavItem({ item, isSidebarCollapsed }) {
                   to={subItem.href}
                   className={`flex items-center gap-3 py-2 px-3 pixel-item transition-all text-sm ${
                     isActive(subItem.href)
-                      ? 'bg-white text-[#FF6B9D] font-bold shadow-md'
-                      : 'bg-white bg-opacity-10 hover:bg-opacity-20 text-white font-bold'
+                      ? 'bg-[#B8E8D4] text-gray-800 font-bold'
+                      : 'bg-white hover:bg-[#FFF4C9] text-gray-700 font-bold'
                   }`}
                 >
                   <subItem.icon className="w-4 h-4" />
@@ -64,13 +64,13 @@ export default function NavItem({ item, isSidebarCollapsed }) {
       to={item.href}
       className={`flex items-center gap-3 py-2.5 px-3 pixel-button transition-all ${
         isActive(item.href) 
-          ? 'bg-white text-[#FF6B9D] font-bold shadow-lg' 
-          : 'bg-white bg-opacity-20 hover:bg-opacity-30 text-white'
+          ? 'bg-[#B8E8D4] text-gray-800 font-bold' 
+          : 'bg-white hover:bg-[#FFF4C9] text-gray-800'
       } ${isSidebarCollapsed ? 'justify-center px-2' : ''}`}
       title={isSidebarCollapsed ? item.name : ''}
     >
       <item.icon className="w-5 h-5" />
-      {!isSidebarCollapsed && <span className="font-bold drop-shadow">{item.name}</span>}
+      {!isSidebarCollapsed && <span className="font-bold">{item.name}</span>}
     </Link>
   );
 }
