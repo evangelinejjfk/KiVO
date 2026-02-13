@@ -45,11 +45,11 @@ export default function Scrapbook() {
         <div>
           <h1 className="text-3xl font-bold flex items-center gap-3">
             <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
-              Senior Scrapbook
+              Scrapbook
             </span>
             <Sparkles className="w-8 h-8 text-yellow-500" />
           </h1>
-          <p className="text-gray-600 mt-1">Capture your senior year memories, one moment at a time</p>
+          <p className="text-gray-600 mt-1">Capture your memories, one moment at a time</p>
         </div>
 
         <div className="flex gap-3">
@@ -139,9 +139,9 @@ export default function Scrapbook() {
           <div className="w-20 h-20 mx-auto mb-4 bg-purple-100 rounded-full flex items-center justify-center">
             <Camera className="w-10 h-10 text-purple-500" />
           </div>
-          <h3 className="text-xl font-bold text-gray-800 mb-2">Start Your Senior Scrapbook!</h3>
+          <h3 className="text-xl font-bold text-gray-800 mb-2">Start Your Scrapbook!</h3>
           <p className="text-gray-600 mb-6 max-w-md mx-auto">
-            Capture photos and journal entries throughout your senior year. 
+            Capture photos and journal entries throughout the year. 
             At the end, generate a beautiful AI-powered yearbook.
           </p>
           <Button
