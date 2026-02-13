@@ -156,6 +156,14 @@
   to { transform: rotate(360deg); }
 }
 
+.bg-pixel-bg {
+  background-color: #FFE5E5;
+}
+
+.neo-shadow {
+  box-shadow: 4px 4px 0px #000;
+}
+
 /* Retro color scheme */
 :root {
   --pixel-pink: #FF6B9D;
