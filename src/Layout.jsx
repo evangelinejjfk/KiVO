@@ -166,7 +166,7 @@ export default function Layout({ children, currentPageName }) {
         >
           <header className={`mb-6 text-center transition-all ${isSidebarCollapsed ? 'py-4' : ''}`}>
             <div className="flex items-center justify-between mb-2">
-              {!isSidebarCollapsed && <h1 className="text-2xl font-bold">StudyBuddy</h1>}
+              {!isSidebarCollapsed && <h1 className="text-2xl font-bold">Kivo</h1>}
               <button
                 onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
                 className="p-2 rounded-lg border-2 hover:neo-shadow transition-all hidden md:block"
@@ -175,12 +175,12 @@ export default function Layout({ children, currentPageName }) {
                 {isSidebarCollapsed ? <ChevronsRight className="w-4 h-4" /> : <ChevronsLeft className="w-4 h-4" />}
               </button>
             </div>
-            {!isSidebarCollapsed && <p className="text-xs">Your Homework Hub</p>}
+            {!isSidebarCollapsed && <p className="text-xs">Your Student Hub</p>}
             
             {user && !isSidebarCollapsed && (
               <div className="mt-2 p-2 border-2 rounded-lg" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)' }}>
-                <p className="text-xs font-semibold capitalize">
-                  {user.account_type}{user.account_type !== 'teacher' ? ` • Class ${user.class_name}` : ''}
+                <p className="text-xs font-semibold">
+                  Class {user.class_name}
                 </p>
               </div>
             )}

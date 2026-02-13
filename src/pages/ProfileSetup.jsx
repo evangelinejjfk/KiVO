@@ -15,7 +15,7 @@ const classes = [
 
 export default function ProfileSetup() {
   const [selectedClass, setSelectedClass] = useState("");
-  const [accountType, setAccountType] = useState("student");
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -29,7 +29,7 @@ export default function ProfileSetup() {
     try {
       await User.updateMyUserData({
         class_name: selectedClass,
-        account_type: accountType,
+        account_type: "student",
         profile_completed: true
       });
       window.location.href = createPageUrl("Dashboard");
@@ -43,49 +43,22 @@ export default function ProfileSetup() {
   const inputStyle = "w-full p-4 bg-white border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-[#87CEEB] focus:border-transparent neo-shadow-small text-lg";
   const buttonStyle = "w-full py-4 px-6 bg-[#98FB98] border-2 border-black rounded-lg neo-shadow hover:neo-shadow-small active:shadow-none transform active:translate-x-[2px] active:translate-y-[2px] transition-all duration-150 font-bold text-lg disabled:opacity-50";
 
-  const accountTypes = ["student", "parent", "teacher"];
 
-  const getLabelForClassSelector = () => {
-    switch(accountType) {
-      case "parent": return "My child's class:";
-      case "teacher": return "My assigned class:";
-      default: return "My class:";
-    }
-  }
 
   return (
     <div className="min-h-screen bg-[#FDFD96] flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <GraduationCap className="mx-auto h-16 w-16 mb-4" />
-          <h1 className="text-4xl font-bold mb-2">Welcome to StudyBuddy!</h1>
+          <h1 className="text-4xl font-bold mb-2">Welcome to Kivo!</h1>
           <p className="text-lg text-gray-700">Let's set up your profile</p>
         </div>
 
         <div className="p-6 bg-white border-4 border-black rounded-xl neo-shadow">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="font-bold block mb-3 text-lg">I am a:</label>
-              <div className="space-y-2">
-                {accountTypes.map(type => (
-                  <label key={type} className="flex items-center gap-3 p-3 border-2 border-black rounded-lg cursor-pointer hover:bg-gray-50">
-                    <input
-                      type="radio"
-                      name="accountType"
-                      value={type}
-                      checked={accountType === type}
-                      onChange={(e) => setAccountType(e.target.value)}
-                      className="w-4 h-4"
-                    />
-                    <span className="font-semibold capitalize">{type}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            <div>
               <label className="font-bold block mb-3 text-lg">
-                {getLabelForClassSelector()}
+                My class:
               </label>
               <select
                 value={selectedClass}
@@ -108,7 +81,7 @@ export default function ProfileSetup() {
             </button>
           </form>
         </div>
-        <p className="text-center text-xs text-gray-600 mt-4">Note: Account roles are based on self-selection. Please choose your correct role.</p>
+
       </div>
     </div>
   );
