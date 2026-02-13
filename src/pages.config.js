@@ -58,9 +58,9 @@ import QuickReference from './pages/QuickReference';
 import ResourceHub from './pages/ResourceHub';
 import Scrapbook from './pages/Scrapbook';
 import Search from './pages/Search';
-import YearbookGenerator from './pages/YearbookGenerator';
-import Wellness from './pages/Wellness';
 import Settings from './pages/Settings';
+import Wellness from './pages/Wellness';
+import YearbookGenerator from './pages/YearbookGenerator';
 import __Layout from './Layout.jsx';
 
 
@@ -76,9 +76,9 @@ export const PAGES = {
     "ResourceHub": ResourceHub,
     "Scrapbook": Scrapbook,
     "Search": Search,
-    "YearbookGenerator": YearbookGenerator,
-    "Wellness": Wellness,
     "Settings": Settings,
+    "Wellness": Wellness,
+    "YearbookGenerator": YearbookGenerator,
 }
 
 export const pagesConfig = {

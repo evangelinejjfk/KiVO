@@ -87,7 +87,7 @@ export default function Layout({ children, currentPageName }) {
                   <img 
                     src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/698f4fc393c74430f4d2e3a3/c435ef5f8_ChatGPT_Image_Feb_13__2026__01_14_48_PM-removebg-preview.png" 
                     alt="KiVO Logo" 
-                    className="w-10 h-10 object-contain"
+                    className="w-16 h-16 object-contain"
                   />
                   <div>
                     <h1 className="text-xl font-bold text-[#9B4D96] pixel-text">KiVO</h1>
