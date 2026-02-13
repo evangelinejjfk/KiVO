@@ -48,6 +48,12 @@ export default function Flashcards() {
 
     try {
       await Flashcard.create(newCard);
+      
+      // Award XP for creating flashcard
+      if (window.awardPetXP) {
+        await window.awardPetXP(5);
+      }
+      
       setNewCard({ question: "", answer: "", subject: "", difficulty: "medium" });
       setShowCreateForm(false);
       loadFlashcards();

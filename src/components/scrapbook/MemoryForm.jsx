@@ -82,6 +82,11 @@ Return:
       mentioned_people: analysis.mentioned_people,
       ai_caption: analysis.ai_caption
     });
+    
+    // Award XP for creating memory
+    if (window.awardPetXP) {
+      await window.awardPetXP(20);
+    }
 
     // Reset form
     setJournal("");
