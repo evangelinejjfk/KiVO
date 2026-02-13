@@ -36,7 +36,7 @@ const navItems = [
   },
   { name: "Search", href: createPageUrl("Search"), icon: SearchIcon },
   { name: "Analytics", href: createPageUrl("Analytics"), icon: TrendingUp },
-  { name: "Senior Scrapbook", href: createPageUrl("Scrapbook"), icon: Camera },
+  { name: "Scrapbook", href: createPageUrl("Scrapbook"), icon: Camera },
   { 
     name: "Customization", 
     icon: Feather,
