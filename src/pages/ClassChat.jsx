@@ -36,9 +36,6 @@ export default function ClassChat() {
     try {
       const currentUser = await User.me();
       setUser(currentUser);
-      if (currentUser.account_type === 'teacher') {
-        setActiveChat('with_teacher');
-      }
     } catch (error) {
       console.error("Failed to load user:", error);
     }
@@ -107,7 +104,7 @@ export default function ClassChat() {
 
   const renderMessage = (message) => {
     const isCurrentUser = message.created_by === user.email;
-    const canFlag = user.account_type === 'teacher' && activeChat === 'with_teacher' && !isCurrentUser;
+    const canFlag = false;
 
     return (
       <motion.div
@@ -130,16 +127,6 @@ export default function ClassChat() {
           {!isCurrentUser && (
             <div className="flex items-center gap-2 mb-1">
               <span className="font-bold text-xs text-gray-700">{message.sender_name}</span>
-              {message.sender_type === "parent" && (
-                <span className="bg-purple-500 text-white px-2 py-0.5 rounded-full text-xs font-bold">
-                  Parent
-                </span>
-              )}
-              {message.sender_type === "teacher" && (
-                <span className="bg-orange-500 text-white px-2 py-0.5 rounded-full text-xs font-bold">
-                  Teacher
-                </span>
-              )}
             </div>
           )}
           {message.is_flagged && (
@@ -181,21 +168,19 @@ export default function ClassChat() {
             }`}
           >
             <Users className="w-4 h-4" />
-            With Teacher
+            Class Chat
           </button>
-          {user.account_type !== "teacher" && (
-            <button 
-              onClick={() => setActiveChat("without_teacher")}
-              className={`flex-1 py-2 px-4 rounded-md font-semibold text-sm transition-colors flex items-center justify-center gap-2 ${
-                activeChat === "without_teacher" 
-                  ? "bg-white border-2 border-black neo-shadow-small" 
-                  : "text-gray-600"
-              }`}
-            >
-              <UserIconSingle className="w-4 h-4" />
-              Student-Parent Chat
-            </button>
-          )}
+          <button 
+            onClick={() => setActiveChat("without_teacher")}
+            className={`flex-1 py-2 px-4 rounded-md font-semibold text-sm transition-colors flex items-center justify-center gap-2 ${
+              activeChat === "without_teacher" 
+                ? "bg-white border-2 border-black neo-shadow-small" 
+                : "text-gray-600"
+            }`}
+          >
+            <UserIconSingle className="w-4 h-4" />
+            Private Chat
+          </button>
         </div>
       </div>
 

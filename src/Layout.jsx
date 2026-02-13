@@ -29,7 +29,7 @@ const navItems = [
     name: "Communication", 
     icon: MessageCircle,
     subItems: [
-      { name: "Class & Parent Chat", href: createPageUrl("ClassChat"), icon: MessageCircle },
+      { name: "Class Chat", href: createPageUrl("ClassChat"), icon: MessageCircle },
       { name: "AI Study Buddy", href: createPageUrl("AIChat"), icon: Bot },
       { name: "Chat History", href: createPageUrl("ChatHistory"), icon: History },
     ]
