@@ -1,0 +1,38 @@
+{
+  "name": "Flashcard",
+  "type": "object",
+  "properties": {
+    "question": {
+      "type": "string",
+      "description": "The question or front of the flashcard"
+    },
+    "answer": {
+      "type": "string",
+      "description": "The answer or back of the flashcard"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Subject this flashcard belongs to"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "default": "medium",
+      "description": "Difficulty level of this flashcard"
+    }
+  },
+  "required": [
+    "question",
+    "answer",
+    "subject"
+  ],
+  "rls": {
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

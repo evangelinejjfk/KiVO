@@ -1,0 +1,51 @@
+{
+  "name": "SharedEvent",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The title of the shared event"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the event"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date of the event"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "assignment",
+        "test",
+        "project",
+        "event",
+        "deadline",
+        "meeting",
+        "exam"
+      ],
+      "default": "event",
+      "description": "The type of event"
+    },
+    "class_name": {
+      "type": "string",
+      "description": "The class this event belongs to"
+    },
+    "shared_by": {
+      "type": "string",
+      "description": "Name of person who created this shared event"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Subject this event relates to"
+    }
+  },
+  "required": [
+    "title",
+    "date",
+    "class_name",
+    "shared_by"
+  ]
+}

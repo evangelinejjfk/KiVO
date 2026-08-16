@@ -1,0 +1,34 @@
+{
+  "name": "StudyTip",
+  "type": "object",
+  "properties": {
+    "tip": {
+      "type": "string",
+      "description": "The daily study tip or fun fact"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date this tip was generated for"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "study_tip",
+        "fun_fact",
+        "motivation"
+      ],
+      "default": "study_tip",
+      "description": "Category of the tip"
+    }
+  },
+  "required": [
+    "tip",
+    "date"
+  ],
+  "rls": {
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

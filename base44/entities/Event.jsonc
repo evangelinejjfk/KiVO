@@ -1,0 +1,49 @@
+{
+  "name": "Event",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The title of the event"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the event"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date of the event"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "project",
+        "event",
+        "deadline",
+        "meeting",
+        "exam"
+      ],
+      "default": "event",
+      "description": "The type of event"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "planned",
+        "completed"
+      ],
+      "default": "planned",
+      "description": "The current status of the event"
+    }
+  },
+  "required": [
+    "title",
+    "date"
+  ],
+  "rls": {
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

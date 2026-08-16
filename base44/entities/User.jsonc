@@ -1,0 +1,48 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string",
+      "description": "User's chosen username"
+    },
+    "profile_picture": {
+      "type": "string",
+      "description": "URL to user's profile picture"
+    },
+    "class_name": {
+      "type": "string",
+      "description": "The class/grade the user belongs to"
+    },
+    "level": {
+      "type": "integer",
+      "default": 1,
+      "description": "User's current level in the gamification system"
+    },
+    "total_xp": {
+      "type": "integer",
+      "default": 0,
+      "description": "Total XP accumulated by the user"
+    },
+    "profile_completed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether user completed initial profile setup"
+    },
+    "onboarding_completed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether user completed the onboarding tour"
+    },
+    "last_wellness_check": {
+      "type": "string",
+      "format": "date",
+      "description": "Last date wellness coaching was triggered"
+    }
+  },
+  "required": [
+    "username",
+    "profile_picture",
+    "class_name"
+  ]
+}

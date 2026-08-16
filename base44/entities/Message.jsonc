@@ -1,0 +1,52 @@
+{
+  "name": "Message",
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string",
+      "description": "The message content"
+    },
+    "class_name": {
+      "type": "string",
+      "description": "The class this message belongs to"
+    },
+    "chat_type": {
+      "type": "string",
+      "enum": [
+        "with_teacher",
+        "without_teacher"
+      ],
+      "default": "with_teacher",
+      "description": "The type of chat this message belongs to"
+    },
+    "sender_name": {
+      "type": "string",
+      "description": "Name of the person who sent the message"
+    },
+    "sender_type": {
+      "type": "string",
+      "enum": [
+        "student",
+        "parent",
+        "teacher"
+      ],
+      "description": "Whether the sender is a student, parent, or teacher"
+    },
+    "is_flagged": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether a message has been flagged for review"
+    },
+    "flagged_by": {
+      "type": "string",
+      "description": "Email of the user who flagged the message"
+    }
+  },
+  "required": [
+    "content",
+    "class_name",
+    "sender_name",
+    "sender_type",
+    "chat_type"
+  ]
+}

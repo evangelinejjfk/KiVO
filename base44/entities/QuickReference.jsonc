@@ -1,0 +1,42 @@
+{
+  "name": "QuickReference",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title of the quick reference card"
+    },
+    "content": {
+      "type": "string",
+      "description": "The key points or content of the reference card"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Subject this reference card belongs to"
+    },
+    "tags": {
+      "type": "string",
+      "description": "Comma-separated tags for easy filtering"
+    },
+    "color": {
+      "type": "string",
+      "default": "#FFE4B5",
+      "description": "Background color for the reference card"
+    },
+    "is_shared": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this card is shared with the class"
+    }
+  },
+  "required": [
+    "title",
+    "content",
+    "subject"
+  ],
+  "rls": {
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

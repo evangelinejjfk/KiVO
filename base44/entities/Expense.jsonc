@@ -1,0 +1,46 @@
+{
+  "name": "Expense",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the expense"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "clothes",
+        "snacks",
+        "books",
+        "entertainment",
+        "transit",
+        "coffee",
+        "other"
+      ],
+      "description": "Expense category"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Amount spent"
+    },
+    "note": {
+      "type": "string",
+      "description": "Optional note about the expense"
+    },
+    "receipt_url": {
+      "type": "string",
+      "description": "Optional receipt photo URL"
+    }
+  },
+  "required": [
+    "date",
+    "category",
+    "amount"
+  ],
+  "rls": {
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

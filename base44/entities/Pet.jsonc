@@ -1,0 +1,73 @@
+{
+  "name": "Pet",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Pet name chosen by student"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "cat",
+        "dog",
+        "dragon",
+        "bunny",
+        "fox"
+      ],
+      "default": "cat",
+      "description": "Type of pet"
+    },
+    "level": {
+      "type": "integer",
+      "default": 1,
+      "description": "Pet level"
+    },
+    "xp": {
+      "type": "integer",
+      "default": 0,
+      "description": "Current XP points"
+    },
+    "happiness": {
+      "type": "integer",
+      "default": 50,
+      "description": "Happiness level (0-100)"
+    },
+    "hunger": {
+      "type": "integer",
+      "default": 50,
+      "description": "Hunger level (0-100, higher = more hungry)"
+    },
+    "last_fed": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time pet was fed"
+    },
+    "color": {
+      "type": "string",
+      "default": "#FF6B9D",
+      "description": "Pet color"
+    },
+    "accessories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Unlocked accessories for pet customization"
+    },
+    "active_accessory": {
+      "type": "string",
+      "description": "Currently equipped accessory"
+    }
+  },
+  "required": [
+    "name",
+    "type"
+  ],
+  "rls": {
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

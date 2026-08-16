@@ -1,0 +1,48 @@
+{
+  "name": "Resource",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title of the resource"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the resource"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Subject this resource belongs to"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "note",
+        "question_paper",
+        "link",
+        "image",
+        "document"
+      ],
+      "description": "Type of resource"
+    },
+    "file_url": {
+      "type": "string",
+      "description": "URL of the uploaded file or external link"
+    },
+    "class_name": {
+      "type": "string",
+      "description": "Class this resource is shared with"
+    },
+    "shared_by": {
+      "type": "string",
+      "description": "Name of person who shared this resource"
+    }
+  },
+  "required": [
+    "title",
+    "subject",
+    "type",
+    "class_name",
+    "shared_by"
+  ]
+}

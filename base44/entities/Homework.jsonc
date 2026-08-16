@@ -1,0 +1,42 @@
+{
+  "name": "Homework",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The title of the homework assignment"
+    },
+    "subject": {
+      "type": "string",
+      "description": "The school subject for this assignment"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the homework is due"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes or details for the assignment"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "completed"
+      ],
+      "default": "pending",
+      "description": "The current status of the homework"
+    }
+  },
+  "required": [
+    "title",
+    "subject",
+    "dueDate"
+  ],
+  "rls": {
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

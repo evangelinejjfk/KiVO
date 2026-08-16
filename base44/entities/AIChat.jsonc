@@ -1,0 +1,23 @@
+{
+  "name": "AIChat",
+  "type": "object",
+  "properties": {
+    "topic": {
+      "type": "string",
+      "description": "The topic the user requested notes for"
+    },
+    "notes": {
+      "type": "string",
+      "description": "The AI-generated notes in markdown format"
+    }
+  },
+  "required": [
+    "topic",
+    "notes"
+  ],
+  "rls": {
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

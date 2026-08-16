@@ -1,0 +1,36 @@
+{
+  "name": "UserActivity",
+  "type": "object",
+  "properties": {
+    "activity_type": {
+      "type": "string",
+      "enum": [
+        "flashcard_studied",
+        "ai_chat",
+        "resource_viewed",
+        "resource_uploaded",
+        "message_sent",
+        "event_created"
+      ],
+      "description": "Type of activity performed"
+    },
+    "activity_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the activity"
+    },
+    "details": {
+      "type": "string",
+      "description": "Additional details about the activity"
+    }
+  },
+  "required": [
+    "activity_type",
+    "activity_date"
+  ],
+  "rls": {
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

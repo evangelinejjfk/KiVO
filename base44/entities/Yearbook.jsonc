@@ -1,0 +1,51 @@
+{
+  "name": "Yearbook",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title of the yearbook"
+    },
+    "school_year": {
+      "type": "string",
+      "description": "School year (e.g., 2025-2026)"
+    },
+    "content_markdown": {
+      "type": "string",
+      "description": "AI-generated yearbook content in markdown format"
+    },
+    "themes_detected": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Main themes detected across all memories"
+    },
+    "memory_count": {
+      "type": "integer",
+      "description": "Number of memories included in this yearbook"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "generating",
+        "completed",
+        "failed"
+      ],
+      "default": "generating",
+      "description": "Generation status"
+    }
+  },
+  "required": [
+    "title",
+    "school_year"
+  ],
+  "rls": {
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "name": "Memory",
+  "type": "object",
+  "properties": {
+    "photo_url": {
+      "type": "string",
+      "description": "URL of the uploaded memory photo"
+    },
+    "journal": {
+      "type": "string",
+      "description": "Short journal entry describing the memory"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the memory"
+    },
+    "sentiment": {
+      "type": "string",
+      "enum": [
+        "happy",
+        "excited",
+        "nostalgic",
+        "proud",
+        "grateful",
+        "stressed",
+        "hopeful"
+      ],
+      "description": "AI-detected sentiment of the memory"
+    },
+    "themes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "AI-detected themes like friends, academic, milestones, sports, arts"
+    },
+    "mentioned_people": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "People mentioned in the journal entry"
+    },
+    "location": {
+      "type": "string",
+      "description": "Optional location of the memory"
+    },
+    "ai_caption": {
+      "type": "string",
+      "description": "AI-generated caption for the memory"
+    }
+  },
+  "required": [
+    "journal",
+    "date"
+  ],
+  "rls": {
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

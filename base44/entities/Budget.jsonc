@@ -1,0 +1,28 @@
+{
+  "name": "Budget",
+  "type": "object",
+  "properties": {
+    "month": {
+      "type": "string",
+      "description": "Month in YYYY-MM format"
+    },
+    "monthly_income": {
+      "type": "number",
+      "default": 0,
+      "description": "Monthly income/allowance"
+    },
+    "clothes_budget": {
+      "type": "number",
+      "default": 0,
+      "description": "Monthly budget for clothes"
+    }
+  },
+  "required": [
+    "month"
+  ],
+  "rls": {
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

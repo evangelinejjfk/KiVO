@@ -1,0 +1,37 @@
+{
+  "name": "Mood",
+  "type": "object",
+  "properties": {
+    "mood_type": {
+      "type": "string",
+      "enum": [
+        "happy",
+        "stressed",
+        "anxious",
+        "calm",
+        "excited",
+        "tired",
+        "overwhelmed"
+      ],
+      "description": "The mood type selected by the user"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the mood log"
+    },
+    "note": {
+      "type": "string",
+      "description": "Optional note about how they're feeling"
+    }
+  },
+  "required": [
+    "mood_type",
+    "date"
+  ],
+  "rls": {
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

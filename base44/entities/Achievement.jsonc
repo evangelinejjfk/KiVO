@@ -1,0 +1,45 @@
+{
+  "name": "Achievement",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title of the achievement"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of what was achieved"
+    },
+    "badge_icon": {
+      "type": "string",
+      "description": "Emoji or icon for the badge"
+    },
+    "earned_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the achievement was earned"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "study",
+        "collaboration",
+        "consistency",
+        "milestone"
+      ],
+      "description": "Category of achievement"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "badge_icon",
+    "earned_date",
+    "category"
+  ],
+  "rls": {
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}
